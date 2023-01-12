@@ -21,5 +21,11 @@ Route::post('login', [API\AuthController::class, 'login']);
 Route::middleware('auth:sanctum')->group(function () {
     Route::get('users/{id}', [API\UserController::class, 'show']);
     Route::put('users/{id}', [API\UserController::class, 'update']);
+
+    Route::post('songs', [API\SongController::class, 'store']);
+    Route::delete('songs/{id}/{user_id}', [API\SongController::class, 'destroy']);
+
+    Route::get('user/{user_id}/songs', [API\SongsByUserController::class, 'index']);
+
     Route::post('logout', [AuthController::class, 'logout']);
 });
